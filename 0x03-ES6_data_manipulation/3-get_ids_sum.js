@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 function getFullList(item) {
   return item.id;
 }
@@ -16,3 +17,5 @@ export default function getListStudentIds(objArray) {
   }
   return [];
 }
+
+const a = [1, 2, 3].reduce((partialSum, a) => partialSum + a, 0);
