@@ -1,3 +1,4 @@
+// eslint-disable no-unused-vars
 export default function getListStudents() {
   const firstStudent = {
     id: 1,
