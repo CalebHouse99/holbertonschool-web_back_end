@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 function getFullList(item) {
   return item.location;
 }
@@ -11,3 +12,6 @@ export default function getStudentsByLocation(students, loc) {
   }
   return newStudents;
 }
+
+const j = [1, 2, 3];
+const k = j.filter((word) => word.length > 6);
