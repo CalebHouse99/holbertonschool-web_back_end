@@ -4,5 +4,5 @@ from typing import List
 
 
 def sum_list(input_list: List[float]) -> float:
-    """Sum the list using sum()"""
+    """Sum the list using sum() and List imported from typing"""
     return sum(input_list)
