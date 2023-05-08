@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from typing import List, Union
 """This passes an argument mxd_list,
-and returns the sum
+returns the sum
 """
 
 
