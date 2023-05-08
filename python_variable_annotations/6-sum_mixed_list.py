@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from typing import List, Union
-"""This acquires the summation of the list with 
+"""This acquires the summation of the list with,
 varying data types, such as ints and floats
 """
 
