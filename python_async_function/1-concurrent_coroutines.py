@@ -4,7 +4,7 @@
 import asyncio
 from typing import List
 
-from your_previous_file import wait_random  # replace 'your_previous_file' with the actual filename
+wait_random = __import__('0-basic_async_syntax').wait_random
 
 async def wait_n(n: int, max_delay: int) -> List[float]:
     """Manage a list of wait_random tasks and return their results in order"""
