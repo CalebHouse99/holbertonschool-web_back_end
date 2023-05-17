@@ -13,7 +13,7 @@ class BasicCache(BaseCaching):
 
     def put(self, key, item):
         """
-        Assign to the dictionary self.cache_data the item value for the key key.
+        Assign to the dictionary self.cache_data the item value for key.
         If key or item is None, this method should not do anything.
         """
         if key is None or item is None:
@@ -24,7 +24,7 @@ class BasicCache(BaseCaching):
     def get(self, key):
         """
         Return the value in self.cache_data linked to key.
-        If key is None or if the key doesnt exist in self.cache_data, return None.
+        If key is None or if the key doesnt exist return None.
         """
         if key is None or key not in self.cache_data:
             return None
