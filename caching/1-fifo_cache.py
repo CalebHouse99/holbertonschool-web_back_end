@@ -15,13 +15,13 @@ class FIFOCache(BaseCaching):
         """Classic caching, we need a put"""
         if key is None or item is None:
             return None
-        if len(self.keys) == BaseCaching.MAX_ITEMS and \
-                key not in self.cache_data:
+        if key in self.cache_data:
+            self.keys.remove(key)
+        if len(self.keys) == BaseCaching.MAX_ITEMS:
             discarded_key = self.keys.pop(0)
             del self.cache_data[discarded_key]
             print('DISCARD:', discarded_key)
-        elif key not in self.cache_data:
-            self.keys.append(key)
+        self.keys.append(key)
         self.cache_data[key] = item
 
     def get(self, key):
