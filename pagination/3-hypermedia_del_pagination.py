@@ -4,7 +4,6 @@ Deletion-resilient hypermedia pagination
 """
 
 import csv
-import math
 from typing import List, Dict
 
 
@@ -29,7 +28,6 @@ class Server:
         """Dataset indexed by sorting position, starting at 0"""
         if self.__indexed_dataset is None:
             dataset = self.dataset()
-            truncated_dataset = dataset[:1000]
             self.__indexed_dataset = {
                 i: dataset[i] for i in range(len(dataset))
             }
@@ -40,9 +38,14 @@ class Server:
         assert isinstance(index, int) and index >= 0
         assert isinstance(page_size, int) and page_size > 0
 
-        indexed_data = list(self.__indexed_dataset.items())[index:index + page_size]
-        data = [item[1] for item in indexed_data]
-        next_index = indexed_data[-1][0] + 1 if data else None
+        indexed_data = list(self.__indexed_dataset.items())
+        data, next_index = [], None
+
+        for i, item in indexed_data[index:]:
+            if len(data) == page_size:
+                next_index = i
+                break
+            data.append(item)
 
         return {
             'index': index,
