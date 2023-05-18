@@ -30,7 +30,7 @@ class Server:
         """Dataset indexed by sorting position, starting at 0"""
         if self.__indexed_dataset is None:
             self.__indexed_dataset = \
-            {i: v for i, v in enumerate(self.dataset())}
+                {i: v for i, v in enumerate(self.dataset())}
         return self.__indexed_dataset
 
     def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
