@@ -39,17 +39,16 @@ class Server:
         assert isinstance(page_size, int) and page_size > 0
 
         indexed_data = list(self.__indexed_dataset.items())
-        data, next_index = [], None
+        data, next_index = [], index
 
-        for i, item in indexed_data[index:]:
-            if len(data) == page_size:
-                next_index = i
-                break
-            data.append(item)
+        while len(data) < page_size and next_index < len(indexed_data):
+            if indexed_data[next_index]:
+                data.append(indexed_data[next_index])
+            next_index += 1
 
         return {
             'index': index,
             'next_index': next_index,
-            'page_size': page_size,
+            'page_size': len(data),
             'data': data,
         }
