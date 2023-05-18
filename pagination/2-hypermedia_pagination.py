@@ -4,6 +4,7 @@ import csv
 import math
 from typing import List, Dict, Any
 
+
 class Server:
     """Server class to paginate a database of popular baby names."""
     DATA_FILE = "Popular_Baby_Names.csv"
@@ -31,7 +32,7 @@ class Server:
 
         if start >= len(self.__dataset) or end > len(self.__dataset):
             return []
-        
+
         return self.__dataset[start:end]
 
     def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict:
@@ -47,6 +48,7 @@ class Server:
             "prev_page": page - 1 if page - 1 > 0 else None,
             "total_pages": total_pages
         }
+
 
 def index_range(page, page_size):
     """Tuple of size two with start and end"""
