@@ -1,3 +1,9 @@
+#!/usr/bin/env python3
+"""What in documentation?"""
+import csv
+import math
+from typing import List
+
 class Server:
     """Server class to paginate a database of popular baby names."""
     DATA_FILE = "Popular_Baby_Names.csv"
@@ -41,3 +47,9 @@ class Server:
             "prev_page": page - 1 if page - 1 > 0 else None,
             "total_pages": total_pages
         }
+
+def index_range(page, page_size):
+    """Tuple of size two with start and end"""
+    start = (page - 1) * page_size
+    end = page * page_size
+    return (start, end)
