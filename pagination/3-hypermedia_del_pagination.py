@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
-"""What in documentation?"""
+"""
+Deletion-resilient hypermedia pagination
+"""
+
 import csv
 import math
-from typing import List
+from typing import List, Dict
+
 
 class Server:
     """Server class to paginate a database of popular baby names."""
@@ -11,8 +15,6 @@ class Server:
     def __init__(self):
         self.__dataset = None
         self.__indexed_dataset = None
-        self.__dataset = self.dataset()
-        self.__indexed_dataset = self.indexed_dataset()
 
     def dataset(self) -> List[List]:
         """Cached dataset"""
@@ -21,13 +23,13 @@ class Server:
                 reader = csv.reader(f)
                 dataset = [row for row in reader]
             self.__dataset = dataset[1:]
-
         return self.__dataset
 
     def indexed_dataset(self) -> Dict[int, List]:
         """Dataset indexed by sorting position, starting at 0"""
         if self.__indexed_dataset is None:
             dataset = self.dataset()
+            truncated_dataset = dataset[:1000]
             self.__indexed_dataset = {
                 i: dataset[i] for i in range(len(dataset))
             }
@@ -38,21 +40,13 @@ class Server:
         assert isinstance(index, int) and index >= 0
         assert isinstance(page_size, int) and page_size > 0
 
-        indexed_data = list(self.__indexed_dataset.items())\
-        [index:index + page_size]
-        page_data = [item[1] for item in indexed_data]
-        next_index = max(indexed_data)[0] + 1 if indexed_data else None
+        indexed_data = list(self.__indexed_dataset.items())[index:index + page_size]
+        data = [item[1] for item in indexed_data]
+        next_index = indexed_data[-1][0] + 1 if data else None
 
         return {
             'index': index,
             'next_index': next_index,
-            'page_size': len(page_data),
-            'data': page_data,
+            'page_size': page_size,
+            'data': data,
         }
-
-
-def index_range(page, page_size):
-    """Tuple of size two with start and end"""
-    start = (page - 1) * page_size
-    end = page * page_size
-    return (start, end)

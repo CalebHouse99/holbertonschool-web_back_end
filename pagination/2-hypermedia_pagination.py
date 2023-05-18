@@ -2,7 +2,7 @@
 """What in documentation?"""
 import csv
 import math
-from typing import List
+from typing import List, Dict, Any
 
 class Server:
     """Server class to paginate a database of popular baby names."""
