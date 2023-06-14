@@ -14,7 +14,7 @@ class Cache:
         self._redis.set(str(randKey), data)
         return str(randKey)
 
-    def get(self, key: str, fn: Callable):
+    def get(self, key: str, fn: Callable = None):
         if key is None:
             return None
         val = self._redis.get(key)
