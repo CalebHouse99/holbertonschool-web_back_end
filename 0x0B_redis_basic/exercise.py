@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import redis
 import uuid
-from typing import Union
+from typing import Union, Callable
 
 
 class Cache:
@@ -14,7 +14,7 @@ class Cache:
         self._redis.set(str(randKey), data)
         return str(randKey)
 
-    def get(self, key: str, fn):
+    def get(self, key: str, fn: Callable):
         if key is None:
             return None
         val = self._redis.get(key)
@@ -26,7 +26,7 @@ class Cache:
             return val
 
     def get_str(self, key):
-        return self.get(key, fn=lambda x: x.decode("utf-8"))
+        return self.get(key, str)
 
     def get_int(self, key):
-        return self.get(key, fn=int)
+        return self.get(key, int)
