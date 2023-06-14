@@ -16,11 +16,17 @@ class Cache:
 
     def get(self, key: str, fn):
         if key is None:
-            self._redis.get(key)
-        return fn(self._redis.get(key))
+            return None
+        val = self._redis.get(key)
+        if val is None:
+            return None
+        if fn:
+            return fn(val)
+        else:
+            return val
 
-    def get_str(self):
-        return str(self.get())
+    def get_str(self, key):
+        return self.get(key, fn=lambda x: x.decode("utf-8"))
 
-    def get_int(self):
-        return int(self.get())
+    def get_int(self, key):
+        return self.get(key, fn=int)
