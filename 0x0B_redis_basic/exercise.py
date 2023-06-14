@@ -16,10 +16,11 @@ class Cache:
 
     def get(self, key: str, fn):
         if key is None:
-            self._redis.get()
+            self._redis.get(key)
+        return fn(self._redis.get(key))
 
-    def get_str():
-        return str(Cache.get())
+    def get_str(self):
+        return str(self.get())
 
-    def get_int():
-        return int(Cache.get())
+    def get_int(self):
+        return int(self.get())
