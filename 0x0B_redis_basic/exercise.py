@@ -13,3 +13,13 @@ class Cache:
         randKey = uuid.uuid4()
         self._redis.set(str(randKey), data)
         return str(randKey)
+
+    def get(self, key: str, fn):
+        if key is None:
+            self._redis.get()
+
+    def get_str():
+        return str(Cache.get())
+
+    def get_int():
+        return int(Cache.get())
