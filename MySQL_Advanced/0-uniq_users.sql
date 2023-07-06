@@ -1,6 +1,6 @@
---can be executed on any database
+-- SQL script that creates a table
 CREATE TABLE IF NOT EXISTS users (
-    id INT NOT NULL PRIMARY KEY,
-    email VARCHAR(256) NOT NULL UNIQUE,
-    name VARCHAR(256)
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    name VARCHAR(255)
 );
