@@ -1,7 +1,8 @@
+/* home of app controller */
 class AppController {
-    getHomepage(req, res) {
-        res.send("Hello Holberton School");
+    getHomepage(request, response) {
+        response.send('Hello Holberton School!');
     }
 }
 
-module.exports = AppController;
+export default AppController;
